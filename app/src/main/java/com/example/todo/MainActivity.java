@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     // change 1
+    // change 1
         public void AddText(View view)
         {
             System.out.print("Clicked\n");
