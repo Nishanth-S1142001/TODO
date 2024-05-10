@@ -1,71 +1,93 @@
 package com.example.todo;
 
+import static com.example.todo.R.id.*;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.compose.foundation.interaction.DragInteraction;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+/** @noinspection deprecation*/
 public class HomeActivity extends AppCompatActivity {
-
-    private EditText edit;
-    private TextView task;
-    private Button logOut, add, del;
-
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ImageButton navToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Start of Home Activity");
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        System.out.println("Start of Home Activity");
         setContentView(R.layout.activity_home);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
 
-        });
 
-        edit = (EditText) findViewById(R.id.edit);
-        task = (TextView) findViewById(R.id.task);
-        logOut = (Button) findViewById(R.id.logOut);
-        add = (Button) findViewById(R.id.add);
-        del = (Button) findViewById(R.id.del);
+        toolbar= (Toolbar) findViewById(R.id.toolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        add.setOnClickListener(new View.OnClickListener() {
+        navToggle= (ImageButton) findViewById(nav_toggle) ;
+        setSupportActionBar(toolbar);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_nav,R.string.close_nav);
+        drawerLayout.addDrawerListener(toggle);
+        if(savedInstanceState == null)
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+
+            navigationView.setCheckedItem(R.id.nav_home);
+
+        }
+        navToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.print("Clicked\n");
-                task.setText(edit.getText().toString().trim());
-                System.out.println("Value of input :"+ edit.getText());
+                drawerLayout.open();
             }
         });
-        del.setOnClickListener(new View.OnClickListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                System.out.print("Clicked\n");
-                task.setText(null);
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemId=menuItem.getItemId();
+                if(itemId == nav_home)
+                {
+                    // it should be case: R.id.nav_home but I am getting an error saying it requires constant value so I used number
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();}
 
+                if(itemId == nav_settings)getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
+
+
+                if(itemId == nav_about)
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AboutFragment()).commit();
+
+
+                if(itemId == nav_share)
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ShareFragment()).commit();
+
+                drawerLayout.close();
+                return false;
             }
         });
+    }}
 
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(HomeActivity.this, "Log Out Successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(HomeActivity.this, StartActivity.class));
-            }
-        });
-    }
-}
+
