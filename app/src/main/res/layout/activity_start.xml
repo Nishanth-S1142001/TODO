@@ -5,6 +5,39 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartActivity">
+    tools:context=".StartActivity"
+    android:background="@drawable/login_register_background">
+
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="98dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginRight="20sp"
+        android:background="@drawable/bt2"
+        android:fontFamily="monospace"
+        android:shadowColor="@color/white"
+        android:text="Register"
+        android:textColor="#4C063D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:fontFamily="monospace"
+        android:textColor="#4C063D"
+        android:id="@+id/login"
+        android:layout_width="98dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        android:text="Login"
+        android:layout_marginLeft="20sp"
+        android:background="@drawable/bt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

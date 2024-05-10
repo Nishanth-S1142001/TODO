@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#70473C"
+    android:background="@drawable/home_background"
     tools:context=".HomeActivity">
 
     <TextView
+        android:fontFamily="cursive"
+        android:textColor="#D56A6A"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Check out the tasks"
-        android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,11 +23,12 @@
         app:layout_constraintVertical_bias="0.651" />
 
     <TextView
+        android:fontFamily="cursive"
+        android:textColor="#D56A6A"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter task here!"
-        android:textColor="#EFEAEA"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,11 +38,13 @@
         app:layout_constraintVertical_bias="0.188" />
 
     <Button
+        android:layout_width="98dp"
+        android:layout_height="35dp"
+        android:fontFamily="monospace"
+        android:textColor="#4C063D"
         android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="AddText"
-        android:text="AddButton"
+        android:background="@drawable/bt2"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.101"
@@ -50,24 +53,27 @@
         app:layout_constraintVertical_bias="0.396" />
 
     <Button
+        android:layout_width="98dp"
+        android:layout_height="35dp"
+        android:fontFamily="monospace"
+        android:textColor="#4C063D"
         android:id="@+id/del"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="DelText"
-        android:text="DelButton"
+        android:background="@drawable/bt2"
+        android:text="Delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.395" />
 
     <TextView
+        android:fontFamily="cursive"
+        android:textColor="#D56A6A"
         android:id="@+id/task"
         android:layout_width="350dp"
         android:layout_height="143dp"
         android:text="Tasks"
-        android:textColor="#EDE6E6"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,11 +83,12 @@
         app:layout_constraintVertical_bias="0.877" />
 
     <EditText
+        android:fontFamily="cursive"
+        android:textColor="#D56A6A"
         android:id="@+id/edit"
         android:layout_width="388dp"
         android:layout_height="51dp"
         android:padding="10sp"
-        android:textColor="#EDE6E6"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,4 +96,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.28" />
+
+    <Button
+        android:layout_width="98dp"
+        android:layout_height="35dp"
+        android:id="@+id/logOut"
+        android:fontFamily="monospace"
+        android:textColor="#4C063D"
+        android:text="Log Out"
+        android:background="@drawable/bt2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 </androidx.constraintlayout.widget.ConstraintLayout>
