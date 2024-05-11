@@ -82,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
                 {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DummyFragment()).commit();
                 }
+
                 else if(itemId == nav_settings)
                 {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
@@ -93,6 +94,10 @@ public class HomeActivity extends AppCompatActivity {
                 else if(itemId == nav_share)
                 {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShareFragment()).commit();
+                }
+                if(itemId == nav_calendar)
+                {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CalendarFragment()).commit();
                 }
                 else if(itemId == logOut)
                 {
