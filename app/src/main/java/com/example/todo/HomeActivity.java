@@ -2,6 +2,7 @@ package com.example.todo;
 
 import static com.example.todo.R.id.*;
 
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +30,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-/** @noinspection deprecation*/
+import java.util.Objects;
+
+
 public class HomeActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -50,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
         navToggle= (ImageButton) findViewById(nav_toggle) ;
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_nav,R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         if(savedInstanceState == null)
@@ -67,27 +71,38 @@ public class HomeActivity extends AppCompatActivity {
         });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)
+            {
                 int itemId=menuItem.getItemId();
                 if(itemId == nav_home)
                 {
-                    // it should be case: R.id.nav_home but I am getting an error saying it requires constant value so I used number
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();}
-
-                if(itemId == nav_settings)getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
-
-
-                if(itemId == nav_about)
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AboutFragment()).commit();
-
-
-                if(itemId == nav_share)
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ShareFragment()).commit();
-
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+                }
+                if(itemId == nav_dummy)
+                {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DummyFragment()).commit();
+                }
+                else if(itemId == nav_settings)
+                {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
+                }
+                else if(itemId == nav_about)
+                {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
+                }
+                else if(itemId == nav_share)
+                {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShareFragment()).commit();
+                }
+                else if(itemId == logOut)
+                {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LogOutFragment()).commit();
+                }
                 drawerLayout.close();
                 return false;
             }
         });
-    }}
+    }
+}
 
 
